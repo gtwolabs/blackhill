@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Black Hill Conservation Park</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script>
+
+        var map = L.map('map').setView([-34.875754490058455, 138.7293226204548], 14);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            // attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var locations =
+            [
+                {
+                    "name": "Main Ridge Track",
+                    "lat": -34.86522433693616,
+                    "lon": 138.72946961008526,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715933124/gayashan/ccwelc1iy663s4jev4pt.png",
+                    "description": "Situated around 10km north-east of Adelaide in South Australia, Black Hill Conservation Park has a great trail that follows the main ridge."
+                },
+                {
+                    "name": "Ambers Gully Track",
+                    "lat": -34.867524053608726,
+                    "lon": 138.72901916775595,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715932429/gayashan/g27kjmw5cybymllxi5rc.jpg",
+                    "description": "In South Australia's Black Hill Conservation Park, there is a 4.4-kilometer grade 3 hike called Ambers Gully and Sugarloaves Trail. The hike should take about one and a half hours to finish."
+                },
+                {
+                    "name": "Sixth Creek Picnic Spot",
+                    "lat": -34.87753566246263,
+                    "lon": 138.75606595508106,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715931538/gayashan/if8kagxjjm5jir3pba0j.webp",
+                    "description": "Place of beauty and the junction of Deep Creek and Sixth Creek is still a popular picnic spot"
+                },
+                {
+                    "name": "Office",
+                    "lat": -34.884154538700734,
+                    "lon": 138.7032669419739,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715932848/gayashan/oxplb7knhgihz29oz2os.jpg",
+                    "description": "Visitors can get maps, brochures, and other pertinent information on the park's attractions, flora, and animals, as well as safety precautions, at the visitor information office or centre."
+                },
+                {
+                    "name": "Bus Stop",
+                    "lat": -34.88354396897821,
+                    "lon": 138.70078428635352,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715932955/gayashan/ezkvw1aroe6luo5yogl1.png",
+                    "description": "The bus stop located at the specified coordinates. Stop 30 Maryvale Rd - East side"
+                },
+                {
+                    "name": "Fifth Creek Trail - East Trail Head",
+                    "lat": -34.882202927354086,
+                    "lon": 138.70183460699735,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715934702/gayashan/sbmceazykvnffistclqf.png",
+                    "description": "The east trail head of the Fifth Creek Trail (temporarily closed)."
+                },
+                {
+                    "name": "Black Hill Conservation Park Gate 14",
+                    "lat": -34.89021120125611,
+                    "lon": 138.72827382054533,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715933589/gayashan/fgubcaxnap9n8l0bulyr.png",
+                    "description": "Gate 14 entrance to the Black Hill Conservation Park."
+                },
+                {
+                    "name": "Foxhill Track",
+                    "lat": -34.88947865469371,
+                    "lon": 138.7226016904165,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/c_crop,g_auto,h_800,w_800/gayashan/tdsbwsyf2ovxxtvmcgx2.jpg",
+                    "description": "Discover this 5.1-kilometer circular path in the Adelaide, South Australia, area. It takes an average of 1 hour 58 minutes to complete and is generally regarded as a moderately hard route. Since this is a well-liked location for walking, jogging, and hiking, you'll probably meet into other visitors while exploring."
+                },
+                {
+                    "name": "Black Hill Summit Loop",
+                    "lat": -34.88137367645459,
+                    "lon": 138.7214814248795,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715932186/gayashan/xhxkkchpy4gonwpfynzr.jpg",
+                    "description": "Reaching the summit of Black Hill via this trail offers breathtaking vistas across the Adelaide Hills and the surrounding metropolis. The loop can be done in either direction, although the anticlockwise route avoids travelling down this rocky, often treacherous, stretch on the way down and has the steeper portion first. It is also a more strenuous route."
+                },
+                {
+                    "name": "Ghost Tree Gully Trail",
+                    "lat": -34.873413132699866,
+                    "lon": 138.7221985258403,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715931538/gayashan/vvxbslqay0q32lygzjws.jpg",
+                    "description": "Discover the 13.5-kilometer circular route that is close to Adelaide, South Australia. It's generally regarded as a difficult route, taking 4 hours and 48 minutes on average to finish. Although this trail is well-liked for walking, running, and trekking, you can still find some peace and quiet on slower days. January through November are the ideal months to visit this trail."
+                },
+                {
+                    "name": "Entrance",
+                    "lat": -34.87439978099292,
+                    "lon": 138.71230204318294,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715933016/gayashan/vzbfbujshwenxvjsdqas.png",
+                    "description": "Black Hill Conservation Park's rear entrance provides a calm, less-trafficked entryway to picturesque trails and breathtaking scenery."
+                },
+                {
+                    "name": "Main Entrance",
+                    "lat": -34.884197,
+                    "lon": 138.700816,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715933591/gayashan/gqkrvjewhs6coudfhgkd.png",
+                    "description": "The main access to the conservation park is via the vehicle entrance off Maryvale Road, and there is walking access at various points along Marble Hill Road."
+                },
+                {
+                    "name": "Wild Flower Garden",
+                    "lat": -34.87464206239089,
+                    "lon": 138.71095193040247,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715932529/gayashan/rjkgudfgvhykdaqu4zuc.jpg",
+                    "description": "Wander through the beautifully designed Wildflower Garden, which was created in the late 1940s, while you're at the park. The park, which is 684 hectares in size, is home to the low sheoaks that give Black Hill its name."
+                },
+                {
+                    "name": "Parking",
+                    "lat": -34.88387831767183,
+                    "lon": 138.70251887703967,
+                    "image": "https://res.cloudinary.com/dwldehfnr/image/upload/v1715933592/gayashan/n88p7pj0tbqql2lf9eg3.png",
+                    "description": "The main trails and features of Black Hill Conservation Park are easily accessible from the parking area. It is a well-kept location close to the park's entrance, with plenty of tourist parking."
+                },
+            ]
+
+        var customIcons = {
+
+            "Main Ridge Track": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715920071/gayashan/hf1l72p1tefu10vw3kuc.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Ambers Gully Track": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715920071/gayashan/hf1l72p1tefu10vw3kuc.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Sixth Creek Picnic Spot": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715918418/gayashan/at5726mcznqcydr3ojnf.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Office": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715919115/gayashan/qdniowra1q4ujllgmgsm.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Bus Stop": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715919115/gayashan/bfbrzrxkaufzwiq2tjq2.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Fifth Creek Trail - East Trail Head": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715920071/gayashan/hf1l72p1tefu10vw3kuc.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Black Hill Conservation Park Gate 14": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715920376/gayashan/otkbwha9umazl6prp00m.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Foxhill Track": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715920071/gayashan/hf1l72p1tefu10vw3kuc.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Black Hill Summit Loop": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715918376/gayashan/baf58fpa3hfjxo7zyffs.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Ghost Tree Gully Trail": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715920071/gayashan/hf1l72p1tefu10vw3kuc.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Entrance": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715920376/gayashan/otkbwha9umazl6prp00m.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Main Entrance": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715920376/gayashan/otkbwha9umazl6prp00m.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Wild Flower Garden": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715931282/gayashan/w4jfsizlnvkeb9jkddkc.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            "Parking": L.icon({
+                iconUrl: 'https://res.cloudinary.com/dwldehfnr/image/upload/v1715918376/gayashan/nxiq7puyxo3maj0uh0md.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+        };
+
+
+        var markers = L.markerClusterGroup({
+            iconCreateFunction: function (cluster) {
+                return L.divIcon({
+                    html: '<div style="background-color: #B11F00; border-radius: 50%;"><span style="color: white; font-size: 12px;">' + cluster.getChildCount() + '</span></div>',
+                    className: 'marker-cluster',
+                    iconSize: [40, 40]
+                });
+            }
+        });
+
+        locations.forEach(function (location) {
+            var popupContent = '<b>' + location.name + '</b><br />' +
+                '<img src="' + location.image + '" alt="' + location.name + '" width="50px" style="width:100%" /><br />' +
+                '<div style="text-align: justify;">' + location.description + '</div>';
+            var marker = L.marker([location.lat, location.lon], { icon: customIcons[location.name] })
+                .bindPopup(popupContent);
+
+            marker.on('mouseover', function (e) {
+                this.openPopup();
+            });
+            marker.on('mouseout', function (e) {
+                this.closePopup();
+            });
+
+            markers.addLayer(marker);
+        });
+
+        map.addLayer(markers);
+    </script>
+</body>
+
+</html>
